@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,7 @@ public class BenefitController {
             @ApiResponse(responseCode = "201", description = "Benefit created successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid request data"),
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<BenefitDTO> create(@Valid @RequestBody BenefitDTO dto) {
         return new ResponseEntity<>(benefitService.create(dto), HttpStatus.CREATED);
@@ -46,6 +48,7 @@ public class BenefitController {
             @ApiResponse(responseCode = "200", description = "Benefit updated successfully"),
             @ApiResponse(responseCode = "404", description = "Benefit not found")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public ResponseEntity<BenefitDTO> update(@PathVariable("id") Long id, @Valid @RequestBody BenefitDTO dto) {
         return ResponseEntity.ok(benefitService.update(id, dto));
@@ -56,6 +59,7 @@ public class BenefitController {
             @ApiResponse(responseCode = "204", description = "Benefit deleted successfully"),
             @ApiResponse(responseCode = "404", description = "Benefit not found")
     })
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         benefitService.delete(id);
