@@ -8,8 +8,14 @@ import com.corporate.benefits.benefit_api.mapper.UserMapper;
 import com.corporate.benefits.benefit_api.repository.UserRepository;
 import com.corporate.benefits.benefit_api.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,23 +24,30 @@ import static com.corporate.benefits.benefit_api.mapper.UserMapper.toUser;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDTO create(UserDTO dto) {
         usernameValidation(dto);
         User user = toUser(dto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return toDTO(userRepository.save(user));
     }
 
     @Override
     public UserDTO update(Long id, UserDTO dto) {
-        findById(id);
-        User existing = new User();
+        User existing = userRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("User not found with the provided id")
+        );
+
         existing.setUsername(dto.getUsername());
-        existing.setPassword(dto.getPassword());
+
+        if (!dto.getPassword().equals(existing.getPassword())) {
+            existing.setPassword(passwordEncoder.encode(dto.getPassword()));
+        }
         existing.setRole(dto.getRole());
 
         return toDTO(userRepository.save(existing));
@@ -60,6 +73,18 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(UserMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(
+                ()-> new ResourceNotFoundException("User not found")
+        );
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole()))
+        );
     }
 
     private void usernameValidation(UserDTO dto) {
