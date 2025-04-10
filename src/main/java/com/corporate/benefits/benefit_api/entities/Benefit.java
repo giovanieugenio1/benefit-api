@@ -30,6 +30,9 @@ public class Benefit {
     @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
+    private boolean active;
+
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
