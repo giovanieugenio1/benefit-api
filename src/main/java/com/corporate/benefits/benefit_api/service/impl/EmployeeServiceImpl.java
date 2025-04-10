@@ -2,6 +2,8 @@ package com.corporate.benefits.benefit_api.service.impl;
 
 import com.corporate.benefits.benefit_api.dto.EmployeeDTO;
 import com.corporate.benefits.benefit_api.entities.Employee;
+import com.corporate.benefits.benefit_api.exceptions.CpfValidationException;
+import com.corporate.benefits.benefit_api.exceptions.EmailValidationException;
 import com.corporate.benefits.benefit_api.exceptions.ResourceNotFoundException;
 import com.corporate.benefits.benefit_api.mapper.EmployeeMapper;
 import com.corporate.benefits.benefit_api.repository.EmployeeRepository;
@@ -25,6 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO create(EmployeeDTO dto) {
+        cpfValidation(dto);
+        emailValidation(dto);
         Employee employee = toEmployee(dto);
         return toDTO(employeeRepository.save(employee));
     }
@@ -65,5 +69,19 @@ public class EmployeeServiceImpl implements EmployeeService {
                 ()-> new ResourceNotFoundException("Employee not found with the provided id")
         );
         return employee;
+    }
+
+    private void cpfValidation(EmployeeDTO dto) {
+        boolean exists = employeeRepository.findByCpf(dto.getCpf()).isPresent();
+        if (exists) {
+            throw new CpfValidationException("CPF already exists, try to login");
+        }
+    }
+
+    private void emailValidation(EmployeeDTO dto) {
+        boolean exists = employeeRepository.findByEmail(dto.getEmail()).isPresent();
+        if (exists) {
+            throw new EmailValidationException("E-mail already exists, try to login");
+        }
     }
 }
