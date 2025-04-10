@@ -18,5 +18,5 @@ public class BenefitDTO {
     @Size(max = 170, message = "The name can have a maximum of 170 characters")
     private String description;
 
-    private boolean active;
+    private boolean active = true;
 }
