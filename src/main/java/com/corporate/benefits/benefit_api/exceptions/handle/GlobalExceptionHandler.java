@@ -1,5 +1,7 @@
 package com.corporate.benefits.benefit_api.exceptions.handle;
 
+import com.corporate.benefits.benefit_api.exceptions.CpfValidationException;
+import com.corporate.benefits.benefit_api.exceptions.EmailValidationException;
 import com.corporate.benefits.benefit_api.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,28 @@ public class GlobalExceptionHandler {
         values.put("status", HttpStatus.BAD_REQUEST.value());
         values.put("error", "Validation error");
         values.put("message", errors);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(values);
+    }
+
+    @ExceptionHandler(CpfValidationException.class)
+    public ResponseEntity<Map<String, Object>> handleCpfValidationException(CpfValidationException ex) {
+        Map<String, Object> values = new HashMap<>();
+        values.put("timestamp", LocalDateTime.now());
+        values.put("status", HttpStatus.BAD_REQUEST.value());
+        values.put("error", "Validation error");
+        values.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(values);
+    }
+
+    @ExceptionHandler(EmailValidationException.class)
+    public ResponseEntity<Map<String, Object>> handleCpfValidationException(EmailValidationException ex) {
+        Map<String, Object> values = new HashMap<>();
+        values.put("timestamp", LocalDateTime.now());
+        values.put("status", HttpStatus.BAD_REQUEST.value());
+        values.put("error", "Validation error");
+        values.put("message", ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(values);
     }
