@@ -10,6 +10,7 @@ public class BenefitMapper {
         benefit.setId(dto.getId());
         benefit.setName(dto.getName());
         benefit.setDescription(dto.getDescription());
+        benefit.setActive(dto.isActive());
 
         return benefit;
     }
@@ -19,6 +20,7 @@ public class BenefitMapper {
         dto.setId(benefit.getId());
         dto.setName(benefit.getName());
         dto.setDescription(benefit.getDescription());
+        dto.setActive(benefit.isActive());
 
         return dto;
     }
