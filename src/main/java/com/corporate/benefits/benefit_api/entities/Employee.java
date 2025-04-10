@@ -9,11 +9,13 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
 @Table(name = "employees")
@@ -26,6 +28,7 @@ public class Employee {
     private String name;
     private String email;
     private String cpf;
+    private String department;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<Benefit> benefits = new ArrayList<>();
