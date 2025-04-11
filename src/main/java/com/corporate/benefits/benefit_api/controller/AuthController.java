@@ -1,5 +1,6 @@
 package com.corporate.benefits.benefit_api.controller;
 
+import com.corporate.benefits.benefit_api.dto.LoginRequest;
 import com.corporate.benefits.benefit_api.dto.UserDTO;
 import com.corporate.benefits.benefit_api.security.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDTO dto) {
-        String token = authenticationService.authenticate(dto.getUsername(), dto.getPassword());
+    public ResponseEntity<String> login(@RequestBody LoginRequest login) {
+        String token = authenticationService.authenticate(login.getUsername(), login.getPassword());
         return ResponseEntity.ok(token);
     }
 }

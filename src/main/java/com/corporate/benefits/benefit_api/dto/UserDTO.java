@@ -1,7 +1,7 @@
 package com.corporate.benefits.benefit_api.dto;
 
+import com.corporate.benefits.benefit_api.enums.Role;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +19,5 @@ public class UserDTO {
     @Size(min = 6, message = "Password must have at least 6 characters")
     private String password;
 
-    @NotNull(message = "Role must not be null")
-    private String role;
+    private Role role;
 }
