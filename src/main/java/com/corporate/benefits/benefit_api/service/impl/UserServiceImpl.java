@@ -1,7 +1,6 @@
 package com.corporate.benefits.benefit_api.service.impl;
 
 import com.corporate.benefits.benefit_api.dto.UserDTO;
-import com.corporate.benefits.benefit_api.entities.Employee;
 import com.corporate.benefits.benefit_api.entities.User;
 import com.corporate.benefits.benefit_api.exceptions.ResourceNotFoundException;
 import com.corporate.benefits.benefit_api.exceptions.UserAlreadyExistsException;
@@ -35,7 +34,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         usernameValidation(dto);
         User user = toUser(dto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return toDTO(userRepository.save(user));
+
+        User saved = userRepository.save(user);
+
+        UserDTO result = toDTO(saved);
+
+        return result;
     }
 
     @Override
