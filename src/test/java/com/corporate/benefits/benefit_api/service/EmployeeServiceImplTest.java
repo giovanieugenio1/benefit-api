@@ -16,9 +16,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeeServiceImplTest {
@@ -49,7 +54,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    void shouldCreateEmployee_ReturnCreated() {
+    void shouldCreateEmployee() {
         when(repository.findByCpf(dto.getCpf())).thenReturn(Optional.empty());
         when(repository.findByEmail(dto.getEmail())).thenReturn(Optional.empty());
         when(repository.save(any(Employee.class))).thenReturn(employee);
@@ -76,7 +81,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    void shouldUpdateEmployee_ReturnOk() {
+    void shouldUpdateEmployee() {
         when(repository.findById(1L)).thenReturn(Optional.of(employee));
         when(repository.save(any(Employee.class))).thenReturn(employee);
 
@@ -92,7 +97,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    void shouldDeleteEmployee_ReturnNoContent() {
+    void shouldDeleteEmployee() {
         when(repository.findById(1L)).thenReturn(Optional.of(employee));
 
         employeeService.delete(1L);
@@ -101,7 +106,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
-    void shouldFindAllEmployee_ReturnOk() {
+    void shouldFindAllEmployee() {
         when(repository.findAll()).thenReturn(List.of(employee));
 
         List<EmployeeDTO> result = employeeService.findAll();
@@ -109,6 +114,4 @@ public class EmployeeServiceImplTest {
         assertFalse(result.isEmpty());
         assertEquals(1, result.size());
     }
-
-
 }
