@@ -2,6 +2,7 @@ package com.corporate.benefits.benefit_api.security;
 
 import com.corporate.benefits.benefit_api.dto.UserDTO;
 import com.corporate.benefits.benefit_api.entities.User;
+import com.corporate.benefits.benefit_api.exceptions.InvalidCredentialsException;
 import com.corporate.benefits.benefit_api.exceptions.ResourceNotFoundException;
 import com.corporate.benefits.benefit_api.exceptions.UserAlreadyExistsException;
 import com.corporate.benefits.benefit_api.repository.UserRepository;
@@ -33,20 +34,20 @@ public class AuthenticationService {
 
         userRepository.save(user);
 
-        return jwtUtil.generateToken(user.getUsername(), user.getRole());
+        return jwtUtil.generateToken(user.getUsername(), user.getRole().name());
     }
 
     public String authenticate(String username, String password) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (AuthenticationException e) {
-            throw new RuntimeException("Invalid username or passsword");
+            throw new InvalidCredentialsException("Invalid username or password");
         }
 
         User user = userRepository.findByUsername(username).orElseThrow(
                 ()-> new ResourceNotFoundException("User not found with the provided username")
         );
 
-        return jwtUtil.generateToken(user.getUsername(), user.getRole());
+        return jwtUtil.generateToken(user.getUsername(), user.getRole().name());
     }
 }
