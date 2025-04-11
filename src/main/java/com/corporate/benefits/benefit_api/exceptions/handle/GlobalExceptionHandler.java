@@ -2,6 +2,7 @@ package com.corporate.benefits.benefit_api.exceptions.handle;
 
 import com.corporate.benefits.benefit_api.exceptions.*;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -9,9 +10,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -92,12 +95,12 @@ public class GlobalExceptionHandler {
         Throwable cause = ex.getCause();
 
         if (cause instanceof InvalidFormatException invalidEx) {
-            if (invalidEx.getTargetType().isEnum() &&
-                    invalidEx.getTargetType().getSimpleName().equals("Role")) {
+            if (invalidEx.getTargetType().isEnum()) {
+                String acceptedValues = Arrays.toString(invalidEx.getTargetType().getEnumConstants());
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                         Map.of(
                                 "error", "Bad Request",
-                                "message", "Invalid role. Accepted values: ROLE_ADMIN or ROLE_USER.",
+                                "message", "Invalid value. Accepted values: " + acceptedValues,
                                 "status", 400,
                                 "timestamp", LocalDateTime.now()
                         )
@@ -116,21 +119,23 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)
-    public ResponseEntity<Map<String, String>> handleInvalidCredentials(InvalidCredentialsException ex) {
-        Map<String, String> error = new HashMap<>();
-        error.put("error", ex.getMessage());
+    public ResponseEntity<Map<String, Object>> handleInvalidCredentials(InvalidCredentialsException ex) {
+        Map<String, Object> error = new HashMap<>();
+        error.put("timestamp", LocalDateTime.now());
+        error.put("status", HttpStatus.UNAUTHORIZED.value());
+        error.put("error", "Unauthorized");
+        error.put("message", ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGenericException(Exception ex) {
+        log.error("Unexpected error occurred", ex);
         Map<String, Object> values = new HashMap<>();
-
         values.put("timestamp", LocalDateTime.now());
         values.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
         values.put("error", "Internal Server Error");
         values.put("message", ex.getMessage());
-
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(values);
     }
 }
