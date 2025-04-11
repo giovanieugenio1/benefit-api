@@ -64,7 +64,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .collect(Collectors.toList());
     }
 
-    private Employee getEmployeeById(Long id) {
+    public Employee getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(
                 ()-> new ResourceNotFoundException("Employee not found with the provided id")
         );

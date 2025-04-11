@@ -1,8 +1,14 @@
 package com.corporate.benefits.benefit_api.controller;
 
+import com.corporate.benefits.benefit_api.dto.BenefitDTO;
 import com.corporate.benefits.benefit_api.dto.EmployeeDTO;
+import com.corporate.benefits.benefit_api.entities.Employee;
+import com.corporate.benefits.benefit_api.mapper.BenefitMapper;
 import com.corporate.benefits.benefit_api.service.EmployeeService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,10 +16,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Tag(name = "Employee", description = "Contains all operations related to employee resources")
 @Validated
@@ -72,5 +80,28 @@ public class EmployeeController {
     @GetMapping
     public ResponseEntity<List<EmployeeDTO>> findAll() {
         return ResponseEntity.ok(employeeService.findAll());
+    }
+
+    @Operation(
+            summary = "Get benefits assigned to an employee",
+            description = "Returns a list of benefits assigned to the employee with the provided ID. Only accessible to users with roles ADMIN or USER.",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "List of benefits returned successfully",
+                            content = @Content(array = @ArraySchema(schema = @Schema(implementation = BenefitDTO.class)))
+                    ),
+                    @ApiResponse(responseCode = "404", description = "Employee not found", content = @Content),
+                    @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content)
+            }
+    )
+    @GetMapping("/{id}/benefits")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
+    public ResponseEntity<List<BenefitDTO>> getBenefits(@PathVariable("id") Long id) {
+        Employee employee = employeeService.getEmployeeById(id);
+        List<BenefitDTO> dto = employee.getBenefits()
+                .stream()
+                .map(BenefitMapper::toDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dto);
     }
 }

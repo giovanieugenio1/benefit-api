@@ -1,6 +1,7 @@
 package com.corporate.benefits.benefit_api.service;
 
 import com.corporate.benefits.benefit_api.dto.UserDTO;
+import com.corporate.benefits.benefit_api.entities.Employee;
 
 import java.util.List;
 
