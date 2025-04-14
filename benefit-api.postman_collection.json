@@ -1,0 +1,344 @@
+{
+	"info": {
+		"_postman_id": "14ea796e-5da1-4ffd-94c9-b474ba5835ec",
+		"name": "benefit-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31790271"
+	},
+	"item": [
+		{
+			"name": "Employees",
+			"item": [
+				{
+					"name": "Create Employee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMSIsImlhdCI6MTc0NDQ2NjM3MCwiZXhwIjoxNzQ0NDY5OTcwfQ.A6Ze6XOiI1fey5mzQ5u2vrgBlYXcjEG36WioKPe69bk"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"Giovani\",\r\n \"email\": \"giovani@gmail.com\",\r\n \"cpf\": \"22345752753\",\r\n \"department\": \"TI\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/employee"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/employee/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete EmployeeById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/employee/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Employee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"Giovani Eugenio\",\r\n \"email\": \"giovani1233@gmail.com\",\r\n \"cpf\": \"22345752753\",\r\n \"department\": \"Administration\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/employee/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Employees",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/employee"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Benefit",
+			"item": [
+				{
+					"name": "Create Benefit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMSIsImlhdCI6MTc0NDM5ODYxMiwiZXhwIjoxNzQ0NDAyMjEyfQ.GH9qWU2G501NPi3nGcUPER660PS1jTExs8mbW8aCshI"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Health Plan\",\r\n    \"description\": \"Plano de saúde médico e odontológico\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/benefit"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Benefit ById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMSIsImlhdCI6MTc0NDM5MzYwMCwiZXhwIjoxNzQ0Mzk3MjAwfQ.51i6veKk074ZltU2yjqhidOq-_EZedFShfkSGmeSmyM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/benefit/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Benefit",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Health Plan -atualizado\",\r\n    \"description\": \"Plano de saúde médico e odontológico\",\r\n    \"active\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/benefit/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Benefit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMzIzIiwiaWF0IjoxNzQ0MzgyMjI2LCJleHAiOjE3NDQzODU4MjZ9.16fQpJ69GLhPW85TCr3F79086dul7fWIXR8e5_1BLGs"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/benefit/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Benefit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMSIsImlhdCI6MTc0NDM5MzYwMCwiZXhwIjoxNzQ0Mzk3MjAwfQ.51i6veKk074ZltU2yjqhidOq-_EZedFShfkSGmeSmyM"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/benefit"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NDQzOTAzOTYsImV4cCI6MTc0NDM5Mzk5Nn0.35SEaarTPr3Ssj7qswMF9kAzwBv28vuFryAkhO4c6Jw"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"user2\",\r\n  \"password\": \"123456\",\r\n  \"role\": \"ROLE_USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user"
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3NDQzOTAzOTYsImV4cCI6MTc0NDM5Mzk5Nn0.35SEaarTPr3Ssj7qswMF9kAzwBv28vuFryAkhO4c6Jw"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/user/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMzI2NjMiLCJpYXQiOjE3NDQzODYyNjAsImV4cCI6MTc0NDM4OTg2MH0.VMF_PAg543YSn2BQYtChu1RbCHWU8OwEz5puQkK5yYE"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"user\",\r\n  \"password\": \"12345610\",\r\n  \"role\": \"ROLE_USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/user/1"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiYWRtaW4zMjY2MyIsImlhdCI6MTc0NDM4ODcxNywiZXhwIjoxNzQ0MzkyMzE3fQ.LYjYiwQCTmwHKhx0dZCBpX3G-bElCURBdHhOZiFBbGQ"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/user/21"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Register / Login",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin1\",\r\n  \"password\": \"123456\",\r\n  \"role\": \"ROLE_ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"admin\",\r\n  \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/auth/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lnk Benefit/Employee",
+			"item": [
+				{
+					"name": "Assignment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMSIsImlhdCI6MTc0NDM5NzY1NiwiZXhwIjoxNzQ0NDAxMjU2fQ.lBHsocoTYAYwBlG0P8-Vs99G3K2CxCBeOpGK3W1PKg4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employeeId\": 1,\r\n    \"benefitId\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/assignments"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
