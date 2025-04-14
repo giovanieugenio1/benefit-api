@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface BenefitRepository extends JpaRepository<Benefit, Long> {
 
     Optional<Benefit> findByName(String name);
+    boolean existsById(Long id);
 }

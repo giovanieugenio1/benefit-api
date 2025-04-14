@@ -41,8 +41,8 @@ public class BenefitServiceImpl implements BenefitService {
 
     @Override
     public void delete(Long id) {
-        findById(id);
-        benefitRepository.deleteById(id);
+        Benefit benefit = getBenefitById(id);
+        benefitRepository.delete(benefit);
     }
 
     @Override
