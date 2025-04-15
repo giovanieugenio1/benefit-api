@@ -2,7 +2,9 @@ package com.corporate.benefits.benefit_api.mapper;
 
 import com.corporate.benefits.benefit_api.dto.BenefitDTO;
 import com.corporate.benefits.benefit_api.entities.Benefit;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BenefitMapper {
 
     public static Benefit toBenefit(BenefitDTO dto) {

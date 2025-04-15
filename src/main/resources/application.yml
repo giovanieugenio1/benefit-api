@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: benefit-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/benefit-db
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+springdoc:
+  packagesToScan: com.corporate.benefits.benefit_api.controller
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+jwt:
+  secret: minhasenhacomvarioscaracteres1234567890!@#
+  expiration: 3600000
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.http.converter.json: TRACE
