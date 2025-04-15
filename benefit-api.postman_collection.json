@@ -310,35 +310,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Lnk Benefit/Employee",
-			"item": [
-				{
-					"name": "Assignment",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6WyJST0xFX0FETUlOIl0sInN1YiI6ImFkbWluMSIsImlhdCI6MTc0NDM5NzY1NiwiZXhwIjoxNzQ0NDAxMjU2fQ.lBHsocoTYAYwBlG0P8-Vs99G3K2CxCBeOpGK3W1PKg4"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"employeeId\": 1,\r\n    \"benefitId\": 1\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/assignments"
-					},
-					"response": []
-				}
-			]
 		}
 	]
 }
