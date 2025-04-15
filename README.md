@@ -54,42 +54,51 @@ http://localhost:8080/swagger-ui.html
 
 ### Employee
 
+Cria novo colaborador - POST (ADMIN)
 ```http
-  POST /employee | Cria novo colaborador
+  http://localhost:8080/employee
 ```
+Obtém colaborador por ID - GET
 ```http
-  GET /employee/{id} - Obtém colaborador por ID
+  http://localhost:8080/employee/1 
 ```
+Atualiza colaborador - PUT (ADMIN)
 ```http
-  PUT /employee/{id} - Atualiza colaborador
+  http://localhost:8080/employee/1
 ```
+Remove colaborador - DELETE (ADMIN)
 ```http
-  DELETE /employee/{id} - Remove colaborador
+  http://localhost:8080/employee/1
 ```
+Lista todos os colaboradores
 ```http
-  GET /employee - Lista todos os colaboradores
+  http://localhost:8080/employee
 ```
-```http
-  POST /employee/{id}/benefits - Lista benefícios do colaborador
-```
+
 ### Benefit 
+
+Cria um novo benefício - POST (ADMIN)
 ```http
-  POST /benefit - Cria novo benefício (ADMIN)
+  http://localhost:8080/benefit
 ```
+Atualiza um benefício - PUT (ADMIN)
 ```http
-  PUT /benefit/{id} - Atualiza benefício (ADMIN)
+  http://localhost:8080/benefit/1
 ```
+Obtém um benefício por ID - GET
 ```http
-  GET /benefit/{id} - Obtém benefício por ID
+  http://localhost:8080/benefit/1
 ```
+Remove um benefício - DELETE (ADMIN)
 ```http
-  DELETE /benefit/{id} - Remove benefício (ADMIN)
+  http://localhost:8080/benefit/1
 ```
+Lista todos os benefícios - GET
 ```http
-  GET /benefit - Lista todos os benefícios
+  http://localhost:8080/benefit
 ```
 ### Módulo de Usuários (User)
-Endpoints para gerenciamento de usuários do sistema. Requer autenticação JWT e as operações de escrita são restritas a usuários com role ADMIN.
+Endpoints para gerenciamento de usuários do sistema contém as mesmas funções. Requer autenticação JWT e as operações de escrita são restritas a usuários com role ADMIN.
 
 Para facilitar os envios das requisições use a collection do Postman anexada neste repositório.
 
