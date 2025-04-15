@@ -101,4 +101,3 @@ Lista todos os benefícios - GET
 Endpoints para gerenciamento de usuários do sistema contém as mesmas funções. Requer autenticação JWT e as operações de escrita são restritas a usuários com role ADMIN.
 
 Para facilitar os envios das requisições use a collection do Postman anexada neste repositório.
-
