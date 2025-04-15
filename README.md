@@ -91,5 +91,5 @@ http://localhost:8080/swagger-ui.html
 ### Módulo de Usuários (User)
 Endpoints para gerenciamento de usuários do sistema. Requer autenticação JWT e as operações de escrita são restritas a usuários com role ADMIN.
 
-Para facilitar os envios das requisições use a collection do Postman anexada neste repositório.
+Para facilitar os envios das requisições use a collection do Postman anexada adicionado ao projeto, voce irá vê-la na pasta principal do projeto. Importe em seu Postman.
 
