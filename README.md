@@ -41,9 +41,19 @@ A API utiliza JWT (JSON Web Tokens) para autenticação. Endpoints protegidos re
 
 Rotas de Autenticação: 
 
-**POST /auth/login** -> Autentica usuário e retorna token JWT
+Registra um usuário e retorna token JWT - POST
+```http
+  http://localhost:8080/auth/register
+```
 
-**POST /auth/register** -> Registra novo usuário (apenas ADMIN)
+Registra um usuário e retorna token JWT - POST
+```http
+  http://localhost:8080/auth/login
+```
+
+Obs: As roles enviadas no payload devem ser exclusivamente "ROLE_ADMIN" ou "ROLE_USER".
+E como se trata de uma autenticação stateless, o token precisará ser enviado no header a cada requisição, respeitando o seu tempo de expiração definido nas propriedades.
+
 ## Documentação da API
 Acesse a documentação interativa em:
 
@@ -104,10 +114,5 @@ Lista todos os benefícios - GET
 ```
 ### Módulo de Usuários (User)
 Endpoints para gerenciamento de usuários do sistema contém as mesmas funções. Requer autenticação JWT e as operações de escrita são restritas a usuários com role ADMIN.
-<<<<<<< HEAD
-=======
-
-Para facilitar os envios das requisições use a collection do Postman anexada neste repositório.
->>>>>>> 5e2bc4812049c109edf45d66d2378f39fe120797
 
 Para facilitar os envios das requisições use a collection do Postman anexada neste repositório.
