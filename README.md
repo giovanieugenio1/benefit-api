@@ -70,11 +70,12 @@ Remove colaborador - DELETE (ADMIN)
 ```http
   http://localhost:8080/employee/1
 ```
-Lista todos os colaboradores
+Lista todos os colaboradores - GET
 ```http
   http://localhost:8080/employee
+
 ```
-Lista todos os colaboradores sem benefícios
+Lista todos os colaboradores sem benefícios - GET
 ```http
   http://localhost:8080/employee/without-benefit
 ```
@@ -103,5 +104,10 @@ Lista todos os benefícios - GET
 ```
 ### Módulo de Usuários (User)
 Endpoints para gerenciamento de usuários do sistema contém as mesmas funções. Requer autenticação JWT e as operações de escrita são restritas a usuários com role ADMIN.
+<<<<<<< HEAD
+=======
+
+Para facilitar os envios das requisições use a collection do Postman anexada neste repositório.
+>>>>>>> 5e2bc4812049c109edf45d66d2378f39fe120797
 
 Para facilitar os envios das requisições use a collection do Postman anexada neste repositório.
