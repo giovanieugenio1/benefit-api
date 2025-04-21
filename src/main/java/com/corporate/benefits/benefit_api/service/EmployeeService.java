@@ -13,4 +13,5 @@ public interface EmployeeService {
     EmployeeDTO findById(Long id);
     List<EmployeeDTO> findAll();
     Employee getEmployeeById(Long id);
+    List<EmployeeDTO> findAllEmployeeWithoutBenefit();
 }

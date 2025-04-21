@@ -71,6 +71,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    @Override
+    public List<EmployeeDTO> findAllEmployeeWithoutBenefit() {
+        List<Employee> employees = employeeRepository.findEmployeeWithoutBenefit();
+        return employees.stream()
+                .map(EmployeeMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     private void cpfValidation(EmployeeDTO dto) {
         boolean exists = employeeRepository.findByCpf(dto.getCpf()).isPresent();
         if (exists) {
@@ -84,4 +92,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmailValidationException("E-mail already exists, try to login");
         }
     }
+
+
 }

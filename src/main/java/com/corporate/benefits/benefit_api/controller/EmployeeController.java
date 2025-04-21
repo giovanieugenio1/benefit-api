@@ -111,4 +111,14 @@ public class EmployeeController {
 
         return ResponseEntity.ok(dto);
     }
+
+    @Operation(summary = "List all employees without benefits")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK")
+    })
+    @GetMapping("/without-benefit")
+    public ResponseEntity<List<EmployeeDTO>> getEmployeeWithoutBenefit() {
+         List<EmployeeDTO> employees = employeeService.findAllEmployeeWithoutBenefit();
+         return ResponseEntity.ok(employees);
+    }
 }
