@@ -74,6 +74,10 @@ Lista todos os colaboradores
 ```http
   http://localhost:8080/employee
 ```
+Lista todos os colaboradores sem benefícios
+```http
+  http://localhost:8080/employee/without-benefit
+```
 
 ### Benefit 
 
