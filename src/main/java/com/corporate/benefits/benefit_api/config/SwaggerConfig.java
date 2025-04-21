@@ -22,7 +22,7 @@ public class SwaggerConfig {
 
         return new OpenAPI()
                 .info(new Info()
-                        .title("Beenfit API")
+                        .title("Benefit API")
                         .description("API for managing employee benefits")
                         .version("v1.0")
                         .contact(new Contact()
